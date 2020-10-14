@@ -117,7 +117,7 @@ module.exports = async (client, options) => {
     
       if (user) {
         user.roles.add(role).then(()=>{
-          m.channel.send(`<@!${m.author.id}>, ${muteMsg}`).then(m=> m.delete(10000));
+          m.channel.send(`<@!${m.author.id}>, ${muteMsg}`);
           let muteEmbed = new MessageEmbed()
             .setAuthor(' Action | Auto Mute', `https://images-ext-2.discordapp.net/external/Wms63jAyNOxNHtfUpS1EpRAQer2UT0nOsFaWlnDdR3M/https/image.flaticon.com/icons/png/128/148/148757.png`)
             .addField('Member muted:',`${user}`)
@@ -146,9 +146,8 @@ module.exports = async (client, options) => {
     
    // The warning function.
    const WarnMember = async (m, reply) => {
-    message.delete()
     warned.push(m.author.id);
-    m.channel.send(`<@${m.author.id}>, ${reply}`).then(m=> m.delete(10000));
+    m.channel.send(`<@${m.author.id}>, ${reply}`);
    }
 
     if (message.author.bot) return;
@@ -192,7 +191,6 @@ module.exports = async (client, options) => {
             WarnMember(message, warningMessage);
           } else if (matched == limitUntilMuted) {
             if (!punishedList.includes(message.author.id)) {
-              message.delete();
               MuteMember(message, muteMessage);
             }
           }
